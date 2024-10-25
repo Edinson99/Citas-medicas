@@ -1,0 +1,115 @@
+package com.registro;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+public class RegistroPaciente extends JFrame {
+
+    private JPanel bg;
+    private JLabel title, nameLabel, lastNameLabel, idLabel, dobLabel, addressLabel, phoneLabel, emailLabel;
+    private JTextField nameTxt, lastNameTxt, idTxt, dobTxt, addressTxt, phoneTxt, emailTxt;
+    private JButton registerBtn, cancelBtn;
+
+    public RegistroPaciente() {
+        initComponents();
+    }
+
+    private void initComponents() {
+        bg = new JPanel();
+        title = new JLabel("Registro de Pacientes");
+        nameLabel = new JLabel("Nombre:");
+        lastNameLabel = new JLabel("Apellido:");
+        idLabel = new JLabel("Documento:");
+        dobLabel = new JLabel("Fecha de Nacimiento:");
+        addressLabel = new JLabel("Dirección:");
+        phoneLabel = new JLabel("Teléfono:");
+        emailLabel = new JLabel("Correo Electrónico:");
+
+        nameTxt = new JTextField();
+        lastNameTxt = new JTextField();
+        idTxt = new JTextField();
+        dobTxt = new JTextField();
+        addressTxt = new JTextField();
+        phoneTxt = new JTextField();
+        emailTxt = new JTextField();
+
+        registerBtn = new JButton("Registrar");
+        cancelBtn = new JButton("Cancelar");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+        bg.setLayout(null);
+
+        title.setBounds(150, 30, 200, 30);
+        bg.add(title);
+
+        nameLabel.setBounds(50, 80, 100, 25);
+        bg.add(nameLabel);
+        nameTxt.setBounds(200, 80, 200, 25);
+        bg.add(nameTxt);
+
+        lastNameLabel.setBounds(50, 120, 100, 25);
+        bg.add(lastNameLabel);
+        lastNameTxt.setBounds(200, 120, 200, 25);
+        bg.add(lastNameTxt);
+
+        idLabel.setBounds(50, 160, 100, 25);
+        bg.add(idLabel);
+        idTxt.setBounds(200, 160, 200, 25);
+        bg.add(idTxt);
+
+        dobLabel.setBounds(50, 200, 150, 25);
+        bg.add(dobLabel);
+        dobTxt.setBounds(200, 200, 200, 25);
+        bg.add(dobTxt);
+
+        addressLabel.setBounds(50, 240, 100, 25);
+        bg.add(addressLabel);
+        addressTxt.setBounds(200, 240, 200, 25);
+        bg.add(addressTxt);
+
+        phoneLabel.setBounds(50, 280, 100, 25);
+        bg.add(phoneLabel);
+        phoneTxt.setBounds(200, 280, 200, 25);
+        bg.add(phoneTxt);
+
+        emailLabel.setBounds(50, 320, 150, 25);
+        bg.add(emailLabel);
+        emailTxt.setBounds(200, 320, 200, 25);
+        bg.add(emailTxt);
+
+        registerBtn.setBounds(100, 380, 100, 30);
+        bg.add(registerBtn);
+
+        cancelBtn.setBounds(250, 380, 100, 30);
+        bg.add(cancelBtn);
+
+        add(bg);
+        setSize(450, 450);
+        setLocationRelativeTo(null);
+
+        // Action listeners for the buttons
+        registerBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Logic to save patient information in the database
+                JOptionPane.showMessageDialog(null, "Paciente registrado con éxito.");
+            }
+        });
+
+        cancelBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RegistroPaciente().setVisible(true);
+            }
+        });
+    }
+}
