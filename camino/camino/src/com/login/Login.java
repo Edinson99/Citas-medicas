@@ -47,7 +47,7 @@ public class Login extends javax.swing.JFrame {
 
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/logo sin fondo.png"))); // NOI18N
-        bg.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 290, 140));
+        bg.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 290, 140));
 
         citybg.setBackground(new java.awt.Color(0, 134, 190));
         citybg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/fondo.2_1.jpg"))); // NOI18N
@@ -112,7 +112,7 @@ public class Login extends javax.swing.JFrame {
 
         favicon.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
         favicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/favicon.png"))); // NOI18N
-        favicon.setText("Datenotes Vita");
+        favicon.setText("IPS BUSSINES HEALTH");
         bg.add(favicon, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
         title.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
@@ -306,16 +306,44 @@ public class Login extends javax.swing.JFrame {
         "\nContraseña: " + hiddenPassword, 
         "LOGIN", 
         javax.swing.JOptionPane.INFORMATION_MESSAGE);
+     // Abrir la ventana de registro
+      EntryFrame entryFrame = new EntryFrame();
+    entryFrame.setVisible(true); // Mostrar la ventana de registro
+    
+ 
+      
+   
     }//GEN-LAST:event_loginBtnTxtMouseClicked
 
     private void loginBtnTxt2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnTxt2MouseClicked
        this.dispose(); // Esto cerrará la ventana de inicio de sesión actual
+    // Crear opciones para el tipo de registro
+    String[] options = {"Especialista", "Paciente"};
     
-    // Abrir la ventana de registro
-    REgisterFrame registerFrame = new REgisterFrame();
-    registerFrame.setVisible(true); // Mostrar la ventana de registro
-    
+    // Mostrar el diálogo de selección
+    int choice = JOptionPane.showOptionDialog(
+        this, 
+        "¿Desea registrarse como?", 
+        "Registro",
+        JOptionPane.YES_NO_CANCEL_OPTION,
+        JOptionPane.QUESTION_MESSAGE,
+        null,
+        options,
+        options[1] // valor por defecto
+    );
 
+    // Abrir la ventana de registro según la selección
+    if (choice == 0) {
+        // Opción "Especialista"
+        this.dispose(); // Cierra la ventana de inicio de sesión actual
+        registroFrameEspecialista registerFrame = new registroFrameEspecialista(); // Asegúrate de tener esta clase creada
+        registerFrame.setVisible(true);
+    } else if (choice == 1) {
+        // Opción "Paciente"
+        this.dispose(); // Cierra la ventana de inicio de sesión actual
+        registroFramePaciente registerFrame = new registroFramePaciente(); // Ya existe esta clase
+        registerFrame.setVisible(true);
+    }
 
     }//GEN-LAST:event_loginBtnTxt2MouseClicked
 
