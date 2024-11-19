@@ -309,7 +309,10 @@ public class Login extends javax.swing.JFrame {
      // Abrir la ventana de registro
       EntryFrame entryFrame = new EntryFrame();
     entryFrame.setVisible(true); // Mostrar la ventana de registro
-    
+    String rolUsuario = obtenerRolDelUsuario(); // Método que verifica el rol del usuario
+MainMenuFrame menuFrame = new MainMenuFrame();
+menuFrame.mostrarMenuPorRol(rolUsuario);
+menuFrame.setVisible(true);
  
       
    
@@ -336,12 +339,12 @@ public class Login extends javax.swing.JFrame {
     if (choice == 0) {
         // Opción "Especialista"
         this.dispose(); // Cierra la ventana de inicio de sesión actual
-        registroFrameEspecialista registerFrame = new registroFrameEspecialista(); // Asegúrate de tener esta clase creada
+        RegistroEspecialista registerFrame = new RegistroEspecialista(); // Asegúrate de tener esta clase creada
         registerFrame.setVisible(true);
     } else if (choice == 1) {
         // Opción "Paciente"
         this.dispose(); // Cierra la ventana de inicio de sesión actual
-        registroFramePaciente registerFrame = new registroFramePaciente(); // Ya existe esta clase
+        RegistroPaciente registerFrame = new RegistroPaciente(); // Ya existe esta clase
         registerFrame.setVisible(true);
     }
 
@@ -410,4 +413,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel userLabel;
     private javax.swing.JTextField userTxt;
     // End of variables declaration//GEN-END:variables
+
+    private String obtenerRolDelUsuario() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

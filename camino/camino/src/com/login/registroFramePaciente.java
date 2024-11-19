@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -265,12 +267,28 @@ public class registroFramePaciente extends javax.swing.JFrame {
         String direccion = txtDireccion.getText();
         String telefono = txtTelefono.getText();
         String correo = txtCorreo.getText();
+        if (idPaciente.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || fechaNacimiento.isEmpty() 
+            || direccion.isEmpty() || telefono.isEmpty() || correo.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+            }
 
-         Connection conn = null;
-        PreparedStatement stmt = null;
+                if (!fechaNacimiento.matches("\\d{4}-\\d{2}-\\d{2}")) {
+          JOptionPane.showMessageDialog(this, "El formato de la fecha de nacimiento debe ser 'AAAA-MM-DD'.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+              }
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    String usuario = "root";
+    String contrasenia = "lala";
+    String bd = "baseDatosIps";
+    String ip = "localhost";
+    String puerto = "3306";
+    String cadena = "jdbc:mysql://" + ip + ":" + puerto + "/" + bd + "?useSSL=false&serverTimezone=UTC";
 
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/tu_base_de_datos", "usuario", "contraseña");
+            Class.forName("com.mysql.jdb.Driver");
+            conn = DriverManager.getConnection(cadena, usuario, contrasenia);
 
             String sql = "INSERT INTO paciente (id_paciente, nombre, apellido, fecha_nacimiento, direccion, telefono, correo) VALUES (?, ?, ?, ?, ?, ?, ?)";
             stmt = conn.prepareStatement(sql);
@@ -290,6 +308,8 @@ public class registroFramePaciente extends javax.swing.JFrame {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error al registrar paciente: " + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(registroFramePaciente.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if (stmt != null) stmt.close();
