@@ -6,18 +6,20 @@ import java.sql.SQLException;
 
 public class RegistroDAO {
 
-    public boolean registrarPaciente(String nombre, String apellido, String fechaNacimiento, String genero, String direccion, String telefono, String email) {
-        String sql = "INSERT INTO Paciente (nombre, apellido, fecha_nacimiento, genero, direccion, telefono, email) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public boolean registrarPaciente(String id,String nombre, String apellido, String fechaNacimiento, String genero, String direccion, String telefono, String email, String fechaIngreso) {
+        String sql = "INSERT INTO pacientes (id,nombre, apellido, fecha_nacimiento, genero, direccion, telefono, email,fechaIngreso) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
             try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, nombre);
-            statement.setString(2, apellido);
-            statement.setString(3, fechaNacimiento);
-            statement.setString(4, genero);
-            statement.setString(5, direccion);
-            statement.setString(6, telefono);
-            statement.setString(7, email);
+            statement.setString(1, id);
+            statement.setString(2, nombre);
+            statement.setString(3, apellido);
+            statement.setString(4, fechaNacimiento);
+            statement.setString(5, genero);
+            statement.setString(6, direccion);
+            statement.setString(7, telefono);
+            statement.setString(8, email);
+            statement.setString(9, fechaIngreso);
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -26,7 +28,7 @@ public class RegistroDAO {
     }
 
    public boolean registrarEspecialista(String nombre, String apellido, String especialidad, String telefono, String email, String fechaContratacion, String horarioDisponible) {
-    String sql = "INSERT INTO Especialista (nombre, apellido, especialidad, telefono, email, fecha_contratacion, horario_disponible) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO especialistas (nombre, apellido, especialidad, telefono, email, fecha_contratacion, horario_disponible) VALUES (?, ?, ?, ?, ?, ?, ?)";
     try (Connection connection = DatabaseConnection.getConnection();
          PreparedStatement statement = connection.prepareStatement(sql)) {
 

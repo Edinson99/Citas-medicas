@@ -11,11 +11,11 @@ import javax.swing.JOptionPane;
 public class DatabaseConnection {
      private static final String usuario="root";
      private static final String contrasenia="lavilla5441187";
-     private static final String bd="basedatosips";
+     private static final String bd="BusinessHealthDB";
      private static final String ip="localhost";
      private static final String puerto="3306";
     
-     private static final String cadena= "jdbc:mysql://localhost:3306/baseDatosIps";
+     private static final String cadena= "jdbc:mysql://localhost:3306/BusinessHealthDB";
     private static Connection connection;
 
     public static Connection getConnection() {
